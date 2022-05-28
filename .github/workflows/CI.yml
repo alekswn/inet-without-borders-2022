@@ -13,8 +13,16 @@ jobs:
     - name: Build the docker-compose stack
       run: docker-compose build
     - name: Launch containers
-      run: docker-compose up -d
+      run: docker-compose up --scale west-node=2 --scale east-node=2 -d
     - name: Check running containers
       run: docker ps -a
-    - name: Check logs
-      run: docker logs backend
+    - name: Collect docker logs
+      uses: jwalton/gh-docker-logs@v1
+      with:
+        dest: './logs'
+    - name: Upload logs to GitHub
+      uses: actions/upload-artifact@master
+      with:
+        name: Docker logs
+        path: ./logs
+    
