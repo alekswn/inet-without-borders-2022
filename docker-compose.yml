@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  west-node:
+    build: ceno-client
+    networks:
+      - internet
+      - west-net
+      - data-net
+  east-node:
+    build: ceno-client
+    networks:
+      - east-net
+  smuggler-node:
+    build: ceno-client
+    networks:
+      - east-net
+      - west-net
+  censor:
+    build: censor
+    networks: 
+      - west-net
+      - east-net
+  east-jumper:
+    build: jumper
+    networks:
+      - east-net
+      - data-net
+  collector:
+    build: collector
+    networks:
+      - data-net
+      - internet
+
+networks:
+  west-net:
+    driver: bridge
+    internal: true
+  east-net:
+    driver: bridge
+    internal: true
+  data-net:
+    driver: bridge
+    internal: true
+  internet: {}
