@@ -26,3 +26,33 @@ Docker-compose file can be used locally or with Docker Swarm to deploy distribut
 
 ### Launching distributed network (NOT TESTED YET):
 See [Docker Swarm docs](https://docs.docker.com/engine/swarm/)
+
+### TODO
+
+### Issue 1: Fix ansible playbooks for CENO node.
+
+At the moment most of recepies are failing to apply due to outdated packages used int the recepies. Failing playbooks are commented out in [file](https://github.com/alekswn/inet-without-borders-2022/blob/main/ceno-client/ansible/localplay.yml).
+
+### Issue 2: Check if everything setteled for CENO node.
+
+Review [node's bootstrap document](https://github.com/censorship-no-archive/ceno2-testbed/blob/master/node.md) and factor in to ansible playbooks or Dockerfile any setup routines which were not covered by Ansible playbooks.
+
+### Issue 3: Provision collector server
+
+Review [server's bootstrap document](https://github.com/censorship-no-archive/ceno2-testbed/blob/master/servers.md) and implement setup for collector via Dockerfile or Ansible.
+
+### Issue 4: Provision jumper server
+
+Review [server's bootstrap document](https://github.com/censorship-no-archive/ceno2-testbed/blob/master/servers.md) and implement setup for jumper via Dockerfile or Ansible.
+
+### Issue 5: Provision censor node
+
+Implement censor based on scripts from the [archived simulator repo](https://github.com/censorship-no-archive/ceno2-simulator)
+
+### Issue 6: Production deployment
+
+Make it possible deployment on real network with Docker Swarm or any other way.
+
+### Issue 7: Documentation
+
+Document production deployment process and overall usadge.
